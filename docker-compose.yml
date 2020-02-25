@@ -1,0 +1,13 @@
+version: "2.4"
+
+services:
+  connect:
+    build:
+      context: .
+      target: dev
+      dockerfile: ./connect.Dockerfile
+    volumes:
+      - ./bin/.:/node/app
+      - /node/app/node_modules
+    env_file:
+      - ./.env/app.env
