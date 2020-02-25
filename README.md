@@ -11,9 +11,11 @@ You can:
 
 # Tech
 
-name-service uses a number of open source projects to work properly:
+Uses a number of open source projects to work properly:
 
 * [node.js] - open-source, JavaScript runtime environment 
+* [vmware] - cloud computing and virtualization software and services
+* [vmware-api-explorer] - Browse and inspect APIs across Vmware platforms
 
 # Installation
 
@@ -118,3 +120,5 @@ MIT
    [linkIn]: <https://za.linkedin.com/in/mauriziolupini>
    [git-repo-url]: <https://github.com/molupini/vcenter-caller>
    [node.js]: <http://nodejs.org>
+   [vmware]: <https://www.vmware.com/>
+   [vmware-api-explorer]: <https://code.vmware.com/apis/>
