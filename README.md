@@ -33,7 +33,7 @@ $ git init
 ```
 Third:
 ```sh
-$ git clone git@gitlab.com:bcx-sanlam-group/nameservice.git
+$ git clone git@github.com:molupini/vcenter-caller.git
 ```
 
 
@@ -43,16 +43,12 @@ Using node + nodemon + docker for fast developing. Making any change in your sou
 
 Before we begin, required environment variables:
 ```sh
-$ vi ./.env/app.development.env
+$ vi ./.env/app.env
 
-# # Express
-NODE_ENV=development
-MONGODB_APP_URL=mongodb://dbadmin:PleasePassTheSaltAndPepper2019@ns-mongo:27018/ns?authSource=admin
-
-# # MONGODB
-MONGO_INITDB_ROOT_USERNAME=dbadmin
-MONGO_INITDB_ROOT_PASSWORD=PleasePassTheSaltAndPepper2019
-MONGO_INITDB_DATABASE=ns
+# # VSPHERE 
+VCENTER_HOST=unknown
+VCENTER_USER=unknown
+VCENTER_PASSWORD=unknown
 ```
 
 
@@ -60,70 +56,55 @@ MONGO_INITDB_DATABASE=ns
 
 Easily done in a Docker container.
 Make required changes within Dockerfile + compose files if necessary. When ready, simply use docker-compose to build your environment.
-This will create the *ns-express, ns-mongo* services with necessary dependencies.
-Once done, simply import postman.json into Postman:
+This will create the services with necessary dependencies.
 
 For dev, docker compose:
 ```sh
 $ docker-compose build
 $ docker-compose up
 ```
-
-Verify the deployment by navigating to your server address in your preferred browser. Below is a simple health check. 
-
+Verify via docker via CMD or docker exec. 
 
 ```sh
-$ curl http://localhost:3001/healthv
+# # STEP 1, IF REQUIRED TO NARROW DOWN SEARCH 
+# QUERY FOLDER DATA STORE
+    # GET LIST OF FOLDERS WHICH CORRESPOND TO SUPPORTED CLUSTER
+    # USE ID TO FIND DATA STORES BELOW
+# CMD ["nodemon", "./bin/run.js", "getFolder", "--resource=datastore", "--folder=", "--regex="]
+
+# QUERY FOLDER NETWORK,
+    # GET LIST OF FOLDERS WHICH CORRESPOND TO SUPPORTED NETWORK
+    # USE ID TO FIND NETWORKS BELOW
+# CMD ["nodemon", "./bin/run.js", "getFolder", "--resource=network", "--folder=", "--regex=...-..."]
+
+# # STEP 2, RETRIEVE RESOURCES
+# DATA STORE
+# CMD ["nodemon", "./bin/run.js", "getPathRegEx", "--resource=datastore", "--folder=group-...", "--regex="]
+# USE 2ND FUNCTION FOR % FREE
+# CMD ["nodemon", "./bin/run.js", "getDataStore", "--resource=datastore", "--folder=group-...", "--regex="]
+
+# NETWORK
+# CMD ["nodemon", "./bin/run.js", "getPathRegEx", "--resource=network", "--folder=group-....", "--regex=-...-"]
+# CMD ["nodemon", "./bin/run.js", "getPathRegEx", "--resource=network", "--folder=group-....", "--regex=-...-"]
+
+# OTHER EXAMPLES 
+# CMD ["nodemon", "./bin/run.js", "getPathRegEx", "--resource=datacenter", "--folder=", "--regex="]
+# CMD ["nodemon", "./bin/run.js", "getPathRegEx", "--resource=cluster", "--folder=", "--regex="]
+
 ```
 
-For prod, build:
+For prod, install node:
+*evaluate above using nodemon or docker exec*
 ```sh
-$ docker build -f mongo.Dockerfile -t mauriziolupini/ns-mongo:prod .
-$ docker build -f express.Dockerfile -t mauriziolupini/ns-express:prod .
+$ cd ./bin
+$ npm i --save
+$ node ./bin/run.js func --resource= --folder= --regex=
+
 ```
-
-Commit prod, push docker builds:
-```sh
-$ docker push mauriziolupini/ns-mongo:prod
-$ docker push mauriziolupini/ns-express:prod
-```
-
-Get prod, pull docker builds:
-```sh
-$ docker pull mauriziolupini/ns-mongo:prod
-$ docker pull mauriziolupini/ns-express:prod
-```
-
-Run prod, either docker run:
-```sh
-docker network create --driver bridge ns_network
-docker run -d --net=ns_network --name ns-mongo --hostname ns-mongo -e "MONGO_INITDB_ROOT_USERNAME=" -e "MONGO_INITDB_ROOT_PASSWORD=" -e "MONGO_INITDB_DATABASE=" -p 37017:27017 mauriziolupini/ns-mongo:prod
-docker run -d --net=ns_network --name ns-express --hostname ns-express -e "NODE_ENV=" -e "MONGODB_APP_URL=" -p 3000:3000 mauriziolupini/ns-express:prod
-```
-
-Run prod, or docker swarm:
-```sh
-docker stack deploy -c nameservice.yml NS
-```
-
-
-#### Kubernetes + Google Cloud
-
-See [KUBERNETES.md] coming soon.
-
 
 # Future Release
 
   - TBD.
-
-
-# Operating
-Simple API operating instructions. Using [postman], a collaboration platform for API development. Import postman.json. 
-
-Edit environment variable:
-```sh
-url localhost:3001
-```
 
 # License
 
@@ -135,8 +116,5 @@ MIT
 
    [mo]: <https://github.com/molupini>
    [linkIn]: <https://za.linkedin.com/in/mauriziolupini>
-   [git-repo-url]: <https://github.com/molupini/metamash.git>
+   [git-repo-url]: <https://github.com/molupini/vcenter-caller>
    [node.js]: <http://nodejs.org>
-   [express]: <http://expressjs.com>
-   [mongodb]: <https://www.mongodb.com/>
-   [postman]: <https://www.getpostman.com/>

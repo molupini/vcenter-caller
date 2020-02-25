@@ -28,34 +28,8 @@ ENV PATH=/node/node_modules/.bin:$PATH
 RUN npm install --only=development
 
 WORKDIR /node/app
-# # 1
-# FOLDER,
-    # DATASTORE
-    # GET LIST OF FOLDERS WHICH COLORATE TO SUPPORTED CLUSTER
-    # USE ID TO FIND DATA STORES BELOW
-# CMD ["nodemon", "./bin/run.js", "getFolder", "--resource=datastore", "--folder=", "--regex="]
-# FOLDER,
-    # NETWORK
-    # GET LIST OF FOLDERS WHICH COLORATE TO SUPPORTED NETWORK
-    # USE ID TO FIND NETWORKS BELOW
-# CMD ["nodemon", "./bin/run.js", "getFolder", "--resource=network", "--folder=", "--regex=ACI-VDS"]
 
-
-# # 2
-# DATASTORE, USE 2ND FUNCTION FOR % FREE
-# CMD ["nodemon", "./bin/run.js", "getPathRegEx", "--resource=datastore", "--folder=group-s18672", "--regex="]
-# CMD ["nodemon", "./bin/run.js", "getDataStore", "--resource=datastore", "--folder=group-s18672", "--regex="]
-
-# NETWORK
-# CMD ["nodemon", "./bin/run.js", "getPathRegEx", "--resource=network", "--folder=group-n780", "--regex=-GTI-"]
-# CMD ["nodemon", "./bin/run.js", "getPathRegEx", "--resource=network", "--folder=group-n780", "--regex=-STM-"]
-
-# OTHER
-# DATACENTER
-# CMD ["nodemon", "./bin/run.js", "getPathRegEx", "--resource=datacenter", "--folder=", "--regex="]
-
-# CLUSTER
-# CMD ["nodemon", "./bin/run.js", "getPathRegEx", "--resource=cluster", "--folder=BDC-DATACENTER", "--regex="]
+CMD ["nodemon", "./bin/run.js", "getFolder", "--resource=datastore", "--folder=", "--regex="]
 
 # source
 FROM base as source
@@ -84,4 +58,4 @@ FROM source as prod
 
 # USER node
 
-CMD ["node", "./bin/run.js"]
+CMD ["node", "./bin/run.js", "getFolder", "--resource=datastore", "--folder=", "--regex="]
