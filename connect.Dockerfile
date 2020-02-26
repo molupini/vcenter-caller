@@ -29,7 +29,7 @@ RUN npm install --only=development
 
 WORKDIR /node/app
 
-CMD ["nodemon", "./src/run.js", "getFolder", "--resource=datastore", "--folder=", "--regex="]
+CMD ["nodemon", "./src/run.js", "getFolder",  "--vCenterHost=default", "--resource=datastore", "--folder=", "--regex="]
 
 # source
 FROM base as source
@@ -58,4 +58,4 @@ FROM source as prod
 
 # USER node
 
-CMD ["node", "./src/run.js", "getFolder", "--resource=datastore", "--folder=", "--regex="]
+CMD ["node", "./src/run.js", "getFolder",  "--vCenterHost=default", "--resource=datastore", "--folder=", "--regex="]

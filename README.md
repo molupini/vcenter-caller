@@ -72,26 +72,26 @@ Verify via docker via CMD or docker exec.
 # QUERY FOLDER DATA STORE
     # GET LIST OF FOLDERS WHICH CORRESPOND TO SUPPORTED CLUSTER
     # USE ID TO FIND DATA STORES BELOW
-# CMD ["nodemon", "./src/run.js", "getFolder", "--resource=datastore", "--folder=", "--regex="]
+# CMD ["nodemon", "./src/run.js", "getFolder", "--vCenterHost=", "--resource=datastore", "--folder=", "--regex="]
 
 # QUERY FOLDER NETWORK,
     # GET LIST OF FOLDERS WHICH CORRESPOND TO SUPPORTED NETWORK
     # USE ID TO FIND NETWORKS BELOW
-# CMD ["nodemon", "./src/run.js", "getFolder", "--resource=network", "--folder=", "--regex=...-..."]
+# CMD ["nodemon", "./src/run.js", "getFolder", "--vCenterHost=", "--resource=network", "--folder=", "--regex=...-..."]
 
 # # STEP 2, RETRIEVE RESOURCES
 # DATA STORE
-# CMD ["nodemon", "./src/run.js", "getPathRegEx", "--resource=datastore", "--folder=group-...", "--regex="]
+# CMD ["nodemon", "./src/run.js", "getPathRegEx", "--vCenterHost=", "--resource=datastore", "--folder=group-...", "--regex="]
 # USE 2ND FUNCTION FOR % FREE
-# CMD ["nodemon", "./src/run.js", "getDataStore", "--resource=datastore", "--folder=group-...", "--regex="]
+# CMD ["nodemon", "./src/run.js", "getDataStore", "--vCenterHost=", "--resource=datastore", "--folder=group-...", "--regex="]
 
 # NETWORK
-# CMD ["nodemon", "./src/run.js", "getPathRegEx", "--resource=network", "--folder=group-....", "--regex=-...-"]
-# CMD ["nodemon", "./src/run.js", "getPathRegEx", "--resource=network", "--folder=group-....", "--regex=-...-"]
+# CMD ["nodemon", "./src/run.js", "getPathRegEx", "--vCenterHost=", "--resource=network", "--folder=group-....", "--regex=-...-"]
+# CMD ["nodemon", "./src/run.js", "getPathRegEx", "--vCenterHost=", "--resource=network", "--folder=group-....", "--regex=-...-"]
 
 # OTHER EXAMPLES 
-# CMD ["nodemon", "./src/run.js", "getPathRegEx", "--resource=datacenter", "--folder=", "--regex="]
-# CMD ["nodemon", "./src/run.js", "getPathRegEx", "--resource=cluster", "--folder=", "--regex="]
+# CMD ["nodemon", "./src/run.js", "getPathRegEx", "--vCenterHost=", "--resource=datacenter", "--folder=", "--regex="]
+# CMD ["nodemon", "./src/run.js", "getPathRegEx", "--vCenterHost=", "--resource=cluster", "--folder=", "--regex="]
 
 ```
 
@@ -100,7 +100,7 @@ For prod, install node:
 ```sh
 $ cd ./src
 $ npm i --save
-$ node ./src/run.js func --resource= --folder= --regex=
+$ node ./src/run.js func --vCenterHost= --resource= --folder= --regex=
 
 ```
 

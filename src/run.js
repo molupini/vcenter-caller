@@ -13,11 +13,7 @@ const {
 
 // TEST VMW FETCH, IN PROGRESS
 var main = async() => {
-    // ENV 
-    const vc = process.env.VCENTER_HOST
-    const un = process.env.VCENTER_USER
-    const pw = process.env.VCENTER_PASSWORD
-    
+
     // PARAMS, ARGS
     // ._[0] = FUNCTION, ARRAY = ARGUMENTS
     const key = Object.keys(argv)
@@ -26,9 +22,10 @@ var main = async() => {
     // console.log('main, argv =')
     // console.log(argv)
     
-    if (key.indexOf('resource') === -1 || key.indexOf('folder') === -1 || key.indexOf('regex') === -1){
+    if (key.indexOf('vCenterHost') === -1 || key.indexOf('resource') === -1 || key.indexOf('folder') === -1 || key.indexOf('regex') === -1){
         throw 'Missing Parameter'
     }
+    
     const path = argv["resource"]
     const query = argv["folder"] === '' ? argv["folder"] : `?filter.folders=${argv["folder"]}`
     const re = argv["regex"]  === '' ? '.*' : argv["regex"] 
@@ -39,6 +36,10 @@ var main = async() => {
         throw 'Bad Resource'
     }
 
+    // ENV
+    const vc = process.env.VCENTER_HOST !== undefined ? process.env.VCENTER_HOST : key.indexOf('vCenterHost')
+    const un = process.env.VCENTER_USER
+    const pw = process.env.VCENTER_PASSWORD 
     // VARS  
     var cookie = null
 
