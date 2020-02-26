@@ -83,7 +83,7 @@ Verify docker exec,
 # PARAMETERS
     # --vCenterHost=, --vCenterUser=, --vCenterPassword= 
       # either make use of a environment variable or parameter not both, example if you set the VCENTER_HOST environment variable and vCenterHost parameter the env will take effect. It is possible to use a combination of both example setting VCENTER_USER and VCENTER_PASSWORD and making use of the vCenterHost parameter to establish connection. Another tip use the IP address of the vCenter if issues encountered with fqdn"
-    # --resource=, "supported datacenter, cluster, datastore, host, network"
+    # --resource=, supported "datacenter, cluster, datastore, host, network"
     # --folder=, "folder id"
     # --regex=, "simple pattern matching"
 
@@ -95,23 +95,23 @@ Verify docker exec,
 # QUERY FOLDER 
     # GET LIST OF FOLDERS WHICH CAN CORRESPOND TO A RESOURCE NAME EXAMPLE THE SUPPORTED CLUSTER
     # USE ID TO FIND DATA STORES BELOW IN STEP 2
-$ docker exec vsphere_connect_1 node run.js getFolder --vCenterHost= --resource=datastore --folder= --regex=
+$ docker exec id node run.js getFolder --vCenterHost= --resource=datastore --folder= --regex=
 
 # QUERY FOLDER NETWORK,
     # GET LIST OF FOLDERS WHICH CORRESPOND TO SUPPORTED NETWORK
     # USE ID TO FIND NETWORKS BELOW IN STEP 2
-$ docker exec vsphere_connect_1 node run.js getFolder --vCenterHost= --resource=network --folder= --regex=
+$ docker exec id node run.js getFolder --vCenterHost= --resource=network --folder= --regex=
 
 # # STEP 2, RETRIEVE RESOURCES
 # DATA STORE, ADD FOLDER ID FROM STEP 1 ...
-$ docker exec vsphere_connect_1 node run.js getPathRegEx --vCenterHost= --resource=datastore --folder=... --regex=
+$ docker exec id node run.js getPathRegEx --vCenterHost= --resource=datastore --folder=... --regex=
 # USE 2ND FUNCTION FOR % FREE, ADD FOLDER ID FROM STEP 1 ...
-$ docker exec vsphere_connect_1 node run.js getDataStore --vCenterHost= --resource=datastore --folder=... --regex=
+$ docker exec id node run.js getDataStore --vCenterHost= --resource=datastore --folder=... --regex=
 # NETWORK, ADD FOLDER ID FROM STEP 1 ...
-$ docker exec vsphere_connect_1 node run.js getPathRegEx --vCenterHost= --resource=network --folder=... --regex=
+$ docker exec id node run.js getPathRegEx --vCenterHost= --resource=network --folder=... --regex=
 
 # OTHER EXAMPLES, FULL RETURN 
-$ docker exec vsphere_connect_1 node run.js getPathRegEx --vCenterHost= --resource=datacenter --folder= --regex=
+$ docker exec id node run.js getPathRegEx --vCenterHost= --resource=datacenter --folder= --regex=
 ```
 
 Verify node,
