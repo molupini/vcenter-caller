@@ -72,35 +72,35 @@ Verify via docker via CMD or docker exec.
 # QUERY FOLDER DATA STORE
     # GET LIST OF FOLDERS WHICH CORRESPOND TO SUPPORTED CLUSTER
     # USE ID TO FIND DATA STORES BELOW
-# CMD ["nodemon", "./bin/run.js", "getFolder", "--resource=datastore", "--folder=", "--regex="]
+# CMD ["nodemon", "./src/run.js", "getFolder", "--resource=datastore", "--folder=", "--regex="]
 
 # QUERY FOLDER NETWORK,
     # GET LIST OF FOLDERS WHICH CORRESPOND TO SUPPORTED NETWORK
     # USE ID TO FIND NETWORKS BELOW
-# CMD ["nodemon", "./bin/run.js", "getFolder", "--resource=network", "--folder=", "--regex=...-..."]
+# CMD ["nodemon", "./src/run.js", "getFolder", "--resource=network", "--folder=", "--regex=...-..."]
 
 # # STEP 2, RETRIEVE RESOURCES
 # DATA STORE
-# CMD ["nodemon", "./bin/run.js", "getPathRegEx", "--resource=datastore", "--folder=group-...", "--regex="]
+# CMD ["nodemon", "./src/run.js", "getPathRegEx", "--resource=datastore", "--folder=group-...", "--regex="]
 # USE 2ND FUNCTION FOR % FREE
-# CMD ["nodemon", "./bin/run.js", "getDataStore", "--resource=datastore", "--folder=group-...", "--regex="]
+# CMD ["nodemon", "./src/run.js", "getDataStore", "--resource=datastore", "--folder=group-...", "--regex="]
 
 # NETWORK
-# CMD ["nodemon", "./bin/run.js", "getPathRegEx", "--resource=network", "--folder=group-....", "--regex=-...-"]
-# CMD ["nodemon", "./bin/run.js", "getPathRegEx", "--resource=network", "--folder=group-....", "--regex=-...-"]
+# CMD ["nodemon", "./src/run.js", "getPathRegEx", "--resource=network", "--folder=group-....", "--regex=-...-"]
+# CMD ["nodemon", "./src/run.js", "getPathRegEx", "--resource=network", "--folder=group-....", "--regex=-...-"]
 
 # OTHER EXAMPLES 
-# CMD ["nodemon", "./bin/run.js", "getPathRegEx", "--resource=datacenter", "--folder=", "--regex="]
-# CMD ["nodemon", "./bin/run.js", "getPathRegEx", "--resource=cluster", "--folder=", "--regex="]
+# CMD ["nodemon", "./src/run.js", "getPathRegEx", "--resource=datacenter", "--folder=", "--regex="]
+# CMD ["nodemon", "./src/run.js", "getPathRegEx", "--resource=cluster", "--folder=", "--regex="]
 
 ```
 
 For prod, install node:
 *evaluate above using nodemon or docker exec*
 ```sh
-$ cd ./bin
+$ cd ./src
 $ npm i --save
-$ node ./bin/run.js func --resource= --folder= --regex=
+$ node ./src/run.js func --resource= --folder= --regex=
 
 ```
 

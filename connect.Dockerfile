@@ -7,7 +7,7 @@ RUN apk add --no-cache tini
 
 WORKDIR /node
 
-COPY ./bin/package.json ./
+COPY ./src/package.json ./
 
 # need to verify below
 # RUN npm config list && npm ci && npm cache clean --force
@@ -29,7 +29,7 @@ RUN npm install --only=development
 
 WORKDIR /node/app
 
-CMD ["nodemon", "./bin/run.js", "getFolder", "--resource=datastore", "--folder=", "--regex="]
+CMD ["nodemon", "./src/run.js", "getFolder", "--resource=datastore", "--folder=", "--regex="]
 
 # source
 FROM base as source
@@ -42,7 +42,7 @@ FROM base as source
 
 WORKDIR /node/app
 
-COPY ./bin/. . 
+COPY ./src/. . 
 
 
 # prod
@@ -58,4 +58,4 @@ FROM source as prod
 
 # USER node
 
-CMD ["node", "./bin/run.js", "getFolder", "--resource=datastore", "--folder=", "--regex="]
+CMD ["node", "./src/run.js", "getFolder", "--resource=datastore", "--folder=", "--regex="]
