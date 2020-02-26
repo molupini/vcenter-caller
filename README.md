@@ -82,24 +82,27 @@ Verify docker exec,
 
 # PARAMETERS
     # --vCenterHost=, --vCenterUser=, --vCenterPassword= 
-      # either make use of a environment variable or parameter not both, example if you set the VCENTER_HOST environment variable and vCenterHost parameter the env will take effect. It is possible to use a combination of both example setting VCENTER_USER and VCENTER_PASSWORD and making use of the vCenterHost parameter to establish connection. Another tip use the IP address of the vCenter if issues encountered with fqdn"
+      # > either make use of a environment variable or parameter not both,
+      # > example if you set the VCENTER_HOST environment variable and vCenterHost parameter the env will take effect. 
+      # > It is possible to use a combination of both example setting VCENTER_USER and VCENTER_PASSWORD and making use of the vCenterHost parameter to establish connection. 
+      # > Another tip use the IP address of the vCenter if issues encountered with fqdn"
     # --resource=, supported "datacenter, cluster, datastore, host, network"
     # --folder=, "folder id"
     # --regex=, "simple pattern matching"
 
 # RESULT
-  # SUCCESS JSON RESPONSE 
-  # FAILURE 1 WITH ERROR IN CONSOLE
+  # > SUCCESS JSON RESPONSE 
+  # > FAILURE 1 WITH ERROR IN CONSOLE
 
 # # STEP 1, IF REQUIRED TO NARROW DOWN SEARCH 
 # QUERY FOLDER 
-    # GET LIST OF FOLDERS WHICH CAN CORRESPOND TO A RESOURCE NAME EXAMPLE THE SUPPORTED CLUSTER
-    # USE ID TO FIND DATA STORES BELOW IN STEP 2
+    # > GET LIST OF FOLDERS WHICH CAN CORRESPOND TO A RESOURCE NAME EXAMPLE THE SUPPORTED CLUSTER
+    # > USE ID TO FIND DATA STORES BELOW IN STEP 2
 $ docker exec id node run.js getFolder --vCenterHost= --resource=datastore --folder= --regex=
 
 # QUERY FOLDER NETWORK,
-    # GET LIST OF FOLDERS WHICH CORRESPOND TO SUPPORTED NETWORK
-    # USE ID TO FIND NETWORKS BELOW IN STEP 2
+    # > GET LIST OF FOLDERS WHICH CORRESPOND TO SUPPORTED NETWORK
+    # > USE ID TO FIND NETWORKS BELOW IN STEP 2
 $ docker exec id node run.js getFolder --vCenterHost= --resource=network --folder= --regex=
 
 # # STEP 2, RETRIEVE RESOURCES
