@@ -37,9 +37,13 @@ var main = async() => {
     }
 
     // ENV
-    const vc = process.env.VCENTER_HOST !== undefined ? process.env.VCENTER_HOST : key.indexOf('vCenterHost')
-    const un = process.env.VCENTER_USER
-    const pw = process.env.VCENTER_PASSWORD 
+    const vc = process.env.VCENTER_HOST !== undefined ? process.env.VCENTER_HOST : argv["vCenterHost"]
+    const un = process.env.VCENTER_USER !== undefined ? process.env.VCENTER_USER : argv["vCenterUser"]
+    const pw = process.env.VCENTER_PASSWORD !== undefined ? process.env.VCENTER_PASSWORD : argv["vCenterPassword"]
+    // debugging
+    // console.log('env =')
+    // console.log({vc, un, pw}) 
+
     // VARS  
     var cookie = null
 
@@ -68,15 +72,20 @@ var main = async() => {
         else if(argv._[0] === 'getDataStore'){
             result = await getDataStore(vc, un, pw, cookie, query, re)
         }
+        else {
+            throw 'Bad Method'
+        }
         // debugging
-        console.log('main, result =')
-        console.log(result)
-        
-        return result
+        // console.log('main, result =')
+        // console.log(result)
+        if(result.length === 0){
+            throw 'Bad Result'
+        }
+        process.stdout.write(JSON.stringify(result, null, 2))
     } catch (e) {
         console.log('main, error =')
         console.error(e)
-        throw new Error(e)
+        process.stderr.write('1')
     } finally {
         await logoff(vc, un, pw, cookie)
     }
